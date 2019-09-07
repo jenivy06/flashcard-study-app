@@ -124,7 +124,7 @@ $(document).ready(function() {
     // This function handles reloading new Flashcards when the category changes
     function handleSubjectChange() {
       var newFlashcardSubject = $(this).val();
-      getFlashcard(newFlashcardSubject);
+      getFlashcards(newFlashcardSubject);
     }
   
   });

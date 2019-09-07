@@ -20,8 +20,8 @@ module.exports = function(app) {
       });
   });
 
-  // Get route for returning Flashcards of a specific category
-  app.get("/api/flashcards/category/:category", function(req, res) {
+  // Get route for returning Flashcards of a specific subject
+  app.get("/api/flashcards/subject/:subject", function(req, res) {
     db.Flashcard.findAll({
       where: {
         subject: req.params.subject
@@ -71,10 +71,10 @@ module.exports = function(app) {
 
   // PUT route for updating posts
   app.put("/api/flashcards", function(req, res) {
-    db.Flashcard.update(req.answer,
+    db.Flashcard.update(req.body,
       {
         where: {
-          id: req.answer.id
+          id: req.body.id
         }
       })
       .then(function(dbFlashcard) {
