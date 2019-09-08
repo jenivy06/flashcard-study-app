@@ -1,10 +1,11 @@
 $(document).ready(function() {
     // flashcard container holds cards
-    var flashcardContainer = $(".flashcard-container");
+    var flashcardContainer = $(".card-container");
     var flashcardSubjectSelect = $("#subject");
     // Click events for the edit and delete buttons
     $(document).on("click", "button.delete", handleFlashcardDelete);
     $(document).on("click", "button.edit", handleFlashcardEdit);
+   // $(document).on("click", "button.flip", FlashcardFlip);
     flashcardSubjectSelect.on("change", handleSubjectChange);
     var flashcards;
   
@@ -53,17 +54,20 @@ $(document).ready(function() {
     // This function constructs a post's HTML
     function createNewRow(flashcard) {
       var newFlashcardCard = $("<div>");
-      newFlashcardCard.addClass("card");
+      newFlashcardCard.addClass("flashcard");
       var newFlashcardCardHeading = $("<div>");
-      newFlashcardCardHeading.addClass("card-header");
+      newFlashcardCardHeading.addClass("front");
       var deleteBtn = $("<button>");
       deleteBtn.text("x");
       deleteBtn.addClass("delete btn btn-danger");
       var editBtn = $("<button>");
       editBtn.text("EDIT");
       editBtn.addClass("edit btn btn-default");
+      var flipBtn = $("<button>")
+      flipBtn.addClass("flip btn btn-default");
+      flipBtn.text("FLIP CARD");
       var newFlashcardTitle = $("<h2>");
-      var newFlashcardDate = $("<small>");
+   //   var newFlashcardDate = $("<small>");
       var newFlashcardSubject= $("<h5>");
       newFlashcardSubject.text(flashcard.subject);
       newFlashcardSubject.css({
@@ -73,16 +77,17 @@ $(document).ready(function() {
         "-15px"
       });
       var newFlashcardCardBody = $("<div>");
-      newFlashcardCardBody.addClass("card-body");
+      newFlashcardCardBody.addClass("back");
       var newFlashcardBody = $("<p>");
       newFlashcardTitle.text(flashcard.question + " ");
       newFlashcardBody.text(flashcard.answer);
-      var formattedDate = new Date(flashcard.createdAt);
-      formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-      newFlashcardDate.text(formattedDate);
-      newFlashcardTitle.append(newFlashcardDate);
+     // var formattedDate = new Date(flashcard.createdAt);
+     // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    //  newFlashcardDate.text(formattedDate);
+     // newFlashcardTitle.append(newFlashcardDate);
       newFlashcardCardHeading.append(deleteBtn);
       newFlashcardCardHeading.append(editBtn);
+      newFlashcardCardHeading.append(flipBtn);
       newFlashcardCardHeading.append(newFlashcardTitle);
       newFlashcardCardHeading.append(newFlashcardSubject);
       newFlashcardCardBody.append(newFlashcardBody);
@@ -91,6 +96,18 @@ $(document).ready(function() {
       newFlashcardCard.data("flashcard", flashcard);
       return newFlashcardCard;
     }
+
+    //This function flips the card.
+  //  $('.flipBTN').on('click', function() {
+    //   $('.flipBTN').toggleClass('flipped');
+    // });
+    // function FlashcardFlip (){
+    //   var currentFlashcard = $(this)
+    //   $('.flashcard').on('click', function() {
+    //     $('.flashcard').toggleClass('flipped');
+    //   });
+
+    // }
   
     // This function figures out which post we want to delete and then calls
     // deletePost

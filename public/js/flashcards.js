@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  //event listener for flashcard flip
+  $('.flashcard').on('click', function() {
+    $('.flashcard').toggleClass('flipped');
+  });
     // Gets an optional query string from our url (i.e. ?post_id=23)
     var url = window.location.search;
     var flashcardId;
