@@ -67,10 +67,18 @@ $(document).ready(function() {
     editBtn.addClass("edit btn btn-default");
     var newBlogTitle = $("<h2>");
     var newBlogDate = $("<small>");
-    var newBlogCategory = $("<h5>");
+    var newBlogCategory = $("<p>");
     newBlogCategory.text(blog.category);
     newBlogCategory.css({
       float: "right",
+      "font-weight": "700",
+      "margin-top":
+      "-15px"
+    });
+    var newBlogLocation = $("<p>");
+    newBlogLocation.text(blog.location);
+    newBlogLocation.css({
+      float: "left",
       "font-weight": "700",
       "margin-top":
       "-15px"
@@ -88,6 +96,7 @@ $(document).ready(function() {
     newBlogHeading.append(editBtn);
     newBlogHeading.append(newBlogTitle);
     newBlogHeading.append(newBlogCategory);
+    newBlogHeading.append(newBlogLocation);
     newBlogBody.append(newBlogBody);
     newBlog.append(newBlogHeading);
     newBlog.append(newBlogBody);
@@ -121,7 +130,7 @@ $(document).ready(function() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No blogs yet for this category or location! Navigate <a href='/blog'>here</a> in order to create a new blog.");
+    messageH2.html("No blogs yet for this category or location! Navigate <a href='/blogform'>here</a> in order to create a new blog.");
     blogContainer.append(messageH2);
   }
 
