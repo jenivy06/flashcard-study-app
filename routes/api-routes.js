@@ -12,73 +12,86 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the flashcards
-  app.get("/api/flashcards/", function(req, res) {
-    db.Flashcard.findAll({})
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+  // GET route for getting all of the blogs
+  app.get("/api/blogs/", function(req, res) {
+    db.Blog.findAll({})
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 
-  // Get route for returning Flashcards of a specific subject
-  app.get("/api/flashcards/subject/:subject", function(req, res) {
-    db.Flashcard.findAll({
+  // Get route for returning blogs of a specific subject
+  app.get("/api/blogs/category/:category", function(req, res) {
+    db.Blog.findAll({
       where: {
-        subject: req.params.subject
+        subject: req.params.category
       }
     })
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 
-  // Get route for retrieving a single Flashcard
-  app.get("/api/flashcards/:id", function(req, res) {
-    db.Flashcard.findOne({
+  // Get route for returning blogs of a specific location
+  app.get("/api/blogs/location/:location", function(req, res) {
+    db.Blog.findAll({
+      where: {
+        subject: req.params.location
+      }
+    })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
+  });
+
+  // Get route for retrieving a single blog
+  app.get("/api/blogs/:id", function(req, res) {
+    db.Blog.findOne({
       where: {
         id: req.params.id
       }
     })
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 
   // POST route for saving a new post
-  app.post("/api/flashcards", function(req, res) {
-    console.log(req.answer);
-    db.Flashcard.create({
-      question: req.body.question,
-      answer: req.body.answer,
-      subject: req.body.subject
+  app.post("/api/blogs", function(req, res) {
+    console.log(req.body);
+    db.Blog.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category,
+      location: req.body.location
     })
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 
   // DELETE route for deleting posts
-  app.delete("/api/flashcards/:id", function(req, res) {
-    db.Flashcard.destroy({
+  app.delete("/api/blogs/:id", function(req, res) {
+    db.Blog.destroy({
       where: {
         id: req.params.id
       }
     })
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 
   // PUT route for updating posts
-  app.put("/api/flashcards", function(req, res) {
-    db.Flashcard.update(req.body,
+  app.put("/api/blogs", function(req, res) {
+    db.Blog.update(req.body,
       {
         where: {
           id: req.body.id
         }
       })
-      .then(function(dbFlashcard) {
-        res.json(dbFlashcard);
+      .then(function(dbBlog) {
+        res.json(dbBlog);
       });
   });
 };

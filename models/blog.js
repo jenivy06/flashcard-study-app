@@ -1,24 +1,28 @@
 module.exports = function(sequelize, DataTypes) {
-    var Flashcard = sequelize.define("Flashcard", {
-      question: {
+    var Blog = sequelize.define("Blog", {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [1]
         }
       },
-      answer: {
+      body: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1]
         }
       },
-      subject: {
+      category: {
         type: DataTypes.STRING,
-        defaultValue: "English"
+        defaultValue: "Point of Interest"
+      },
+      location: {
+        type: DataTypes.STRING,
+        defaultValue: "USA"
       }
     });
-    return Flashcard;
+    return Blog;
   };
   

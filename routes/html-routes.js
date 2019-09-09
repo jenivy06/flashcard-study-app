@@ -12,18 +12,18 @@ module.exports = function(app) {
 
   // Each of the below routes just handles the HTML page that the user gets sent to.
 
-  // index route loads view.html
+  // index route loads bloglist.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/bloglist.html"));
   });
 
-  app.get("/flashcard", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/flashcard.html"));
+  app.get("/blogform", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/blogform.html"));
   });
 
-  // index route loads index.html
-  app.get("/index", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+  // route to load bloglist.html
+  app.get("/bloglist", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/bloglist.html"));
   });
 
 };
