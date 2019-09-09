@@ -20,11 +20,11 @@ module.exports = function(app) {
       });
   });
 
-  // Get route for returning blogs of a specific subject
+  // Get route for returning blogs of a specific category
   app.get("/api/blogs/category/:category", function(req, res) {
     db.Blog.findAll({
       where: {
-        subject: req.params.category
+        category: req.params.category
       }
     })
       .then(function(dbBlog) {
@@ -36,7 +36,7 @@ module.exports = function(app) {
   app.get("/api/blogs/location/:location", function(req, res) {
     db.Blog.findAll({
       where: {
-        subject: req.params.location
+        location: req.params.location
       }
     })
       .then(function(dbBlog) {
