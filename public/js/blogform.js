@@ -19,6 +19,7 @@ $(document).ready(function() {
     var blogCategorySelect = $("#category");
     // Giving the blogCategorySelect a default value
     blogCategorySelect.val("Point of Interest");
+    var locationSelect = $("#location")
     // Giving the locationSelect a default value
     locationSelect.val("USA");
     // Adding an event listener for when the form is submitted
@@ -52,7 +53,7 @@ $(document).ready(function() {
     // Submits a new post and brings user to blog page upon completion
     function submitBlog(Blog) {
       $.post("/api/blogs/", Blog, function() {
-        window.location.href = "/index";
+        window.location.href = "/bloglist";
       });
     }
   
@@ -72,7 +73,7 @@ $(document).ready(function() {
       });
     }
   
-    // Update a given post, bring user to the index page when done
+    // Update a given post, bring user to the bloglist page when done
     function updateBlog(blog) {
       $.ajax({
         method: "PUT",
@@ -80,7 +81,7 @@ $(document).ready(function() {
         data: blog
       })
         .then(function() {
-          window.location.href = "/blog";
+          window.location.href = "/bloglist";
         });
     }
   });

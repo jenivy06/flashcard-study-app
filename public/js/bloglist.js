@@ -80,14 +80,14 @@ $(document).ready(function() {
     var newBlogBody = $("<p>");
     newBlogTitle.text(blog.title + " ");
     newBlogBody.text(blog.body);
-    var formattedDate = new Date(flashcard.createdAt);
+    var formattedDate = new Date(blog.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newblogDate.text(formattedDate);
-   // newFlashcardQuestion.append(newFlashcardDate);
+    newBlogDate.text(formattedDate);
+    newBlogTitle.append(newBlogDate);
     newBlogHeading.append(deleteBtn);
     newBlogHeading.append(editBtn);
-    newBlogHeading.append(newFlashcardQuestion);
-    newBlogHeading.append(newFlashcardSubject);
+    newBlogHeading.append(newBlogTitle);
+    newBlogHeading.append(newBlogCategory);
     newBlogBody.append(newBlogBody);
     newBlog.append(newBlogHeading);
     newBlog.append(newBlogBody);
@@ -113,19 +113,19 @@ $(document).ready(function() {
       .parent()
       .parent()
       .data("blog");
-    window.location.href = "/blog?blog_id=" + currentBlog.id;
+    window.location.href = "/blogform?blog_id=" + currentBlog.id;
   }
 
-  // This function displays a message when there are no Flashcards
+  // This function displays a message when there are no blogs
   function displayEmpty() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No blogs yet for this category, navigate <a href='/blog'>here</a> in order to create a new blog.");
+    messageH2.html("No blogs yet for this category or location! Navigate <a href='/blog'>here</a> in order to create a new blog.");
     blogContainer.append(messageH2);
   }
 
-  // This function handles reloading new Flashcards when the category changes
+  // This function handles reloading new blogs when the category changes
   function handleCategoryChange() {
     var newBlogCategory = $(this).val();
     getBlogs(newBlogCategory);
