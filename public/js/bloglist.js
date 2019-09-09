@@ -67,13 +67,20 @@ $(document).ready(function() {
     editBtn.addClass("edit btn btn-default");
     var newBlogTitle = $("<h2>");
     var newBlogDate = $("<small>");
+    
+    var newBlogCategoryText = $("<h5>")
+    newBlogCategoryText.text("Category: ")
+    newBlogCategoryText.css({
+      "color": "purple",
+      "float": "right"
+    })
     var newBlogCategory = $("<p>");
     newBlogCategory.text(blog.category);
     newBlogCategory.css({
       float: "right",
       "font-weight": "700",
-      "margin-top":
-      "-15px"
+      "margin-top": "20px",
+      "margin-left": "500px"
     });
     var newBlogLocation = $("<p>");
     newBlogLocation.text(blog.location);
@@ -95,6 +102,7 @@ $(document).ready(function() {
     newBlogHeading.append(deleteBtn);
     newBlogHeading.append(editBtn);
     newBlogHeading.append(newBlogTitle);
+    newBlogHeading.append(newBlogCategoryText);
     newBlogHeading.append(newBlogCategory);
     newBlogHeading.append(newBlogLocation);
     newBlogBody.append(newBlogBody);
