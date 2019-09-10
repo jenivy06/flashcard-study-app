@@ -1,149 +1,142 @@
-body {
-    background: #eee;
-    font-family: 'Lily Script One';
-  }
-  
-  button.submit {
-    float: right;
-  }
-  
-  form#flashcard {
-    margin-top: 50px;
-  }
-  
-  #flashcard textarea {
-    resize: none;
-  }
-  
-  .card-header button.delete, button.edit {
-    float: right;
-    margin: 5px;
-  }
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
-  * {
-    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
-      "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-      "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
-      monospace;
-  }
-  
-  $blue: #29b6f6;
-  $green: #9ccc65;
-  $purple: #ba68c8;
-  $orange: #f57c00;
-  $red: #ef5350;
-  $cyan: #4dd0e1;
-  $background-light: #ffa726;
-  $background-dark: #ff9800;
-  
-  body {
-    background-image: linear-gradient(
-      to bottom right,
-      $background-dark,
-      $background-light
-    );
-  }
-  
-  @mixin text-color($color) {
-    color: $color;
-  }
-  
-  .blue {
-    @include text-color($blue);
-  }
-  
-  .green {
-    @include text-color($green);
-  }
-  
-  .purple {
-    @include text-color($purple);
-  }
-  
-  .cyan {
-    @include text-color($cyan);
-  }
-  
-  .red {
-    @include text-color($red);
-  }
-  
-  .content {
-    height: 100vh;
-    @include text-color(white);
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card {
-    //FUNCTIONALITY
-    perspective: 150rem;
-    height: 20rem;
-    width: 30rem;
-  
+* {
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+body {
+  color: #555;
+  background: #222;
+  text-align: center;
+  font-family: 'Roboto Mono';
+  padding: 1em;
+}
+
+h1 {
+  font-size: 2.2em;
+}
+
+// base
+.flip {
     position: relative;
-  
-    &__side {
-      height: 15rem;
-      transition: all 0.8s ease;
-  
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: auto;
-      width: 30rem;
-  
-      backface-visibility: hidden;
-      border-radius: 3px;
-      overflow: hidden;
-      box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
-  
-      &--front {
-        background-color: #1c1c1c;
-      }
-  
-      &--back {
-        transform: rotateY(180deg);
-  
-        background-color: #1c1c1c;
-      }
+    >.front,
+    >.back {
+        display: block;
+        transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
+        transition-duration: .5s;
+        transition-property: transform, opacity;
     }
-  
-    &:hover &__side--front {
-      transform: rotateY(-180deg);
+    >.front {
+        transform: rotateY(0deg);
     }
-  
-    &:hover &__side--back {
-      transform: rotateY(0deg);
+    >.back {
+        position: absolute;
+        opacity: 0;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        transform: rotateY(-180deg);
     }
-  
-    //FRONT SIDE STYLING
-    &__cont {
-      height: 15rem;
-      background-color: #1c1c1c;
-  
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    &__cta {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      @include text-color(white);
-  
-      p {
-        margin-left: 1rem;
-  
-        & > .space {
-          margin-left: 2rem;
+    &:hover {
+        >.front {
+            transform: rotateY(180deg);
         }
+        >.back {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+    }
+    &.flip-vertical {
+        >.back {
+            transform: rotateX(-180deg);
+        }
+        &:hover {
+            >.front {
+                transform: rotateX(180deg);
+            }
+            >.back {
+                transform: rotateX(0deg);
+            }
+        }
+    }
+}
+
+// custom
+.flip {
+    position: relative;
+    display: inline-block;
+    margin-right: 2px;
+    margin-bottom: 1em;
+    width: 400px;
+    >.front,
+    >.back {
+      display: block;
+      color: white;
+      width: inherit;
+      background-size: cover!important;
+      background-position: center!important;
+      height: 220px;
+      padding: 1em 2em;
+      background: #313131;
+      border-radius: 10px;
+      p {
+        font-size: 0.9125rem;
+        line-height: 160%;
+        color: #999;
       }
     }
-  }
-  
+}
+
+.text-shadow {
+text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04), 9px 9px rgba(0, 0, 0, 0.04), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.04), 11px 11px rgba(0, 0, 0, 0.04), 12px 12px rgba(0, 0, 0, 0.04), 13px 13px rgba(0, 0, 0, 0.04), 14px 14px rgba(0, 0, 0, 0.04), 0.625rem 0.625rem rgba(0, 0, 0, 0.04), 16px 16px rgba(0, 0, 0, 0.04), 17px 17px rgba(0, 0, 0, 0.04), 18px 18px rgba(0, 0, 0, 0.04), 19px 19px rgba(0, 0, 0, 0.04), 1.25rem 1.25rem rgba(0, 0, 0, 0.04);
+}
+
+body
+  background: #eee
+  font-family: 'Lily Script One'
+
+button.submit
+  float: right
+
+form#blog
+  margin-top: 50px
+
+#blog textarea
+  resize: none
+
+.card-header button.delete, button.edit
+  float: right
+  margin: 5px
+
+#titleLabel
+  font-size: 36px
+
+.apptitle
+  color: #F8F5CA
+  border-width: 4px
+  border-style: solid
+  border-color: #F8F5CA
+
+.parallax-container
+  height: 400px
+
+.navbar
+  background-color: #464646
+
+.sectiondivider
+  background-color: #BBC595
+  height: 30px
+
+.journey
+  font-family: 'Kalam', cursive
+
+.track
+  font-family: 'Open Sans Condensed', sans-serif
+
+.footer
+  background-color: #464646
+
+.footertext
+  color: white
