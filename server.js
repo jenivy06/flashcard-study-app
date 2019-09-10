@@ -11,6 +11,18 @@ var express = require("express");
 var app = express();
 var PORT = process.env.PORT || 8080;
 
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+ } else {
+    connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: 'brandy978',
+      database: 'journey_db'
+    })
+  }
+
+
 // Requiring our models for syncing
 var db = require("./models");
 
