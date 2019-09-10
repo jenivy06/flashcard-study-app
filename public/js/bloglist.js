@@ -55,6 +55,7 @@ $(document).ready(function() {
 
   // This function constructs a blog's HTML
   function createNewRow(blog) {
+    
     var newBlog = $("<div>");
     newBlog.addClass("card");
     var newBlogHeading = $("<div>");
