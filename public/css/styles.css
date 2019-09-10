@@ -26,11 +26,10 @@ button.edit {
 }
 
 .apptitle {
-  color: black;
+  color: #F8F5CA;
   border-width: 4px;
   border-style: solid;
-  border-color: black;
-  margin-top: 75px;
+  border-color: #F8F5CA
 }
 
 .parallax-container {
@@ -38,5 +37,26 @@ button.edit {
 }
 
 .navbar{
-  background-color:#586537; 
+  background-color:#464646
+}
+
+.sectiondivider {
+  background-color: #BBC595;
+  height: 30px;
+}
+
+.journey {
+  font-family: 'Kalam', cursive;
+}
+
+.track {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.footer {
+  background-color:#464646
+}
+
+.footertext {
+  color: white;
 }

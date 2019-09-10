@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // index route loads bloglist.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/bloglist.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
   app.get("/blogform", function(req, res) {
